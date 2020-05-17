@@ -2,8 +2,8 @@ paths:
   /api/url-shortner/v1:
         post:
           summary: Url Shorten
-          description: This is the api for shortening url.
-          tags: [URl]
+          description: This is the api for generating dhortened url.
+          tags: [Url Shorten]
           consumes: [application/json]
           produces: [application/json]
           parameters:
@@ -22,9 +22,9 @@ paths:
                      account:
                        type: object
                        properties:
-                         id:
+                        shorten_url:
                            type: string
-                           example: 5d2d766b7190ac3f2348d69b       
+                           example: google       
 definitions:
        urlmodel:
          type: object

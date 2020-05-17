@@ -1,0 +1,49 @@
+   paths:
+     /api/url-shortner/v1/analytics:
+      get:
+          summary: Visit Analytics
+          description: Api for getting  list visit counts within 12 hour 
+          tags: [Url Shorten]
+          produces: [application/json]
+          parameters:           
+            - in: query
+              name: key
+              type: string
+              required: true
+              description: url key
+          responses:
+           200:
+             description: Analytics details
+             schema:
+              $ref: '#/definitions/AnalyticsListModel'
+   definitions:
+    AnalyticsListModel:
+        type: array
+        items:
+          $ref: '#/definitions/AnalyticsModel'
+    AnalyticsModel:
+     type: object
+     properties:
+      hour:
+        type: string
+        example: 1
+      visits:
+        type: string
+        example: 3
+      startTime:
+        type: string
+        example: 2020-05-17T02:15:54.689Z
+      endTime:
+        type: string
+        example: 2020-05-17T03:15:54.689Z
+      
+
+
+
+
+
+
+
+
+
+

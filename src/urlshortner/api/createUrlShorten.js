@@ -1,7 +1,7 @@
+const boom = require('boom');
 const urldb = require('../../analytics/url')
 const fileDb = require('../helper/fileDbTrans');
-const path = require('path')
-const boom = require('boom');
+
 
 function validate(param, res){
     let errorMsg ="";
@@ -18,6 +18,7 @@ function validate(param, res){
         throw boom.badRequest(errorMsg)
     }
 }
+
 function generateModel(param){
    return {
     "key" : param.shorten_url,

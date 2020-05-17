@@ -1,0 +1,47 @@
+   paths:
+     /api/url-shortner/v1:
+      get:
+          summary: Url Details
+          description: Api for getting details of selected url key. Its also update visit count
+          tags: [Url Shorten]
+          produces: [application/json]
+          parameters:           
+            - in: query
+              name: key
+              type: string
+              required: true
+              description: url key
+          responses:
+           200:
+             description: Url details
+             schema:
+               type: object
+               properties:
+                  key:
+                   type: string
+                   example: google
+                  value:
+                   type: string
+                   example: http://www.google.com
+                  visit_count:
+                   type: string
+                   example: 7
+                  createdAt:
+                   type: string
+                   example: 2020-05-17T10:42:37.563Z
+                  visitedTime:
+                   type: array
+                   example: ["2020-05-17T10:43:11.086Z","2020-05-17T10:43:32.725Z","2020-05-17T11:00:00.885Z","2020-05-17T12:39:52.549Z","2020-05-17T12:39:57.050Z","2020-05-17T12:40:00.532Z","2020-05-17T14:05:07.529Z"]
+                  
+
+
+
+
+
+
+
+
+
+
+
+
