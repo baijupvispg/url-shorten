@@ -15,7 +15,7 @@ module.exports = () => {
       let startTime = moment().add(-12,'hours');
       var urlObj = urldb.find(itm =>  itm.key === query.key.toLowerCase());      
       const  hourList = [];
-      let startHour = 1;
+      let startHour = 12;
 
       if(urlObj) {    
 
@@ -28,11 +28,11 @@ module.exports = () => {
                     startTime,
                     endTime
                 });
-                startHour++;
+                startHour--;
                 startTime = endTime;
         }
       }      
-      
+
       return res.status(200).send(hourList);
     }
     return api;

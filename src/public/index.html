@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>
+            Site Visits - Analytics
+        </title>
+         <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+        <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+        <script type="text/javascript">        
+        function changeSite () { 
+            loadChart();
+        }
+        function loadChart() {          
+            var e = document.getElementById("ddlSite");          
+            var value = e.options[e.selectedIndex].value;
+            var text = e.options[e.selectedIndex].text;
+           
+            fetChApi(value).then(data => {    
+            const chartData = data.map(itm => { return { label: itm.hour+" h", value: itm.visits} })
+            
+            const chartConfig = {
+            type: 'column2d',
+            renderAt: 'chart-container',
+            width: '90%',
+            height: '400',
+            dataFormat: 'json',
+            dataSource: {              
+                "chart": {
+                    "caption": `Site Visits - ${text}`,                   
+                    "xAxisName": "Last 12 Hours",
+                    "yAxisName": "Number of Visits",                    
+                    "theme": "fusion",
+                    },              
+                "data": chartData
+                }
+            };
+            FusionCharts.ready(function(){
+            var fusioncharts = new FusionCharts(chartConfig);
+            fusioncharts.render();
+            });
+
+           });
+
+        }
+        async function  fetChApi(sitekey) {            
+             const response = await fetch(`http://localhost:8080/api/url-shortner/v1/analytics?key=${sitekey}`);
+             const data = await response.json();
+             console.log(data)
+             return data;
+         }
+         async function  fetChSiteApi(y) {            
+             const response = await fetch(`http://localhost:8080/api/url-shortner/v1?key=all`);
+             const data = await response.json();
+             console.log(data)
+             return data;
+         }
+        </script>
+
+    </head>
+    <body>
+        <div>
+            <select id="ddlSite" name="ddlSite" onchange="changeSite()">                          
+            </select>
+        </div>
+        <div id="chart-container">Load Chart...</div>
+    </body>
+    <script>
+        fetChSiteApi().then(data => {  
+            var ddlSite = document.getElementById("ddlSite");
+            data.forEach(itm => {
+                var option = document.createElement('option');
+                 option.text = itm.name + ` (${itm.key})`;
+                 option.value = itm.key;
+                 ddlSite.add(option, 0);
+            })            
+            loadChart();
+        });
+        
+    </script>
+</html>
