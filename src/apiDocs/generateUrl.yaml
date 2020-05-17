@@ -1,0 +1,38 @@
+paths:
+  /api/url-shortner/v1:
+        post:
+          summary: Url Shorten
+          description: This is the api for shortening url.
+          tags: [URl]
+          consumes: [application/json]
+          produces: [application/json]
+          parameters:
+            - in: body
+              name: Request Body
+              description: Request body contains required arguments for authentication of user account
+              required: true
+              schema:
+               $ref: '#/definitions/urlmodel'
+          responses:
+             200:
+               description: 'After successful authentication, api return authentication token'
+               schema:
+                  type: object
+                  properties:
+                     account:
+                       type: object
+                       properties:
+                         id:
+                           type: string
+                           example: 5d2d766b7190ac3f2348d69b       
+definitions:
+       urlmodel:
+         type: object
+         required:
+             - shorten_url
+             - url
+         properties:
+            shorten_url:
+              type: string
+            url:
+              type: string             
