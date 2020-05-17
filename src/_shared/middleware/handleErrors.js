@@ -1,5 +1,13 @@
 
 module.exports = (err, req, res, next) => {   
-    return res.status(204).json(err);
-  };
+      if (err.data) {
+        err.output.payload = {
+          ...err.output.payload,
+          errors: err.data.errors,
+          errorKey: err.data.key,
+          entity: err.data.entity,
+        };
+      }
+       return res.status(err.output.statusCode).json(err.output.payload); 
+ };
   

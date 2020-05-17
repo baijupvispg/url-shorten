@@ -5,6 +5,6 @@ module.exports = ( serviceLocator ) => {
     const router = express.Router();  
     router.post('/', catchErrors(api.createUrlShorten.controller))
     router.get('/', catchErrors(api.urlShorten.controller));  
-    //router.use(handleErrors);
+    router.use(handleErrors);
     return router;
 }

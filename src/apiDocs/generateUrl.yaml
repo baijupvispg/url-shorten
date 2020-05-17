@@ -9,13 +9,13 @@ paths:
           parameters:
             - in: body
               name: Request Body
-              description: Request body contains required arguments for authentication of user account
+              description: Request body contains required arguments 
               required: true
               schema:
                $ref: '#/definitions/urlmodel'
           responses:
              200:
-               description: 'After successful authentication, api return authentication token'
+               description: 'After successful execution'
                schema:
                   type: object
                   properties:

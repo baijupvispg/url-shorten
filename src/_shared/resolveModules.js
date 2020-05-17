@@ -3,7 +3,7 @@ const fs = require('fs');
 module.exports = (directory) => {
   const resolvedModules = {};
 
-  /* eslint security/detect-non-literal-fs-filename: off */
+  
   fs.readdirSync(directory).forEach((file) => {
     if (
       file !== 'index.js' &&
@@ -11,9 +11,7 @@ module.exports = (directory) => {
       !file.startsWith('_') &&
       !file.endsWith('spec.js')
     ) {
-      const fileName = file.split('.js')[0];
-      /* eslint import/no-dynamic-require: off */
-      /* eslint security/detect-non-literal-require: off */
+      const fileName = file.split('.js')[0];     
       resolvedModules[fileName] = require(`${directory}/${file}`);
     }
   });
