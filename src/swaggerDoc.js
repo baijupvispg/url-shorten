@@ -6,9 +6,9 @@ const config = require('./config');
 const swaggerDocOptions = {
   swaggerDefinition: {
     info: {
-      title: 'AI API',
+      title: 'Url Shorten',
       version: '1.0.0',
-      description: 'API for the AI',
+      description: 'API for theUrl Shorten',
     },
     host: config.apiBaseUrl,
     basepath: '/',
